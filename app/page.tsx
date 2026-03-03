@@ -20,7 +20,7 @@ export default function Home() {
   }, [screenshots.length]);
 
   return (
-    <div className="flex min-h-screen flex-col items-center gap-8 bg-[#FFFCF0] px-4 py-4 font-sans dark:bg-[#100F0F] sm:justify-between sm:px-8">
+    <div className="flex min-h-screen flex-col items-center gap-8 bg-background px-4 py-4 font-sans text-foreground sm:justify-between sm:px-8">
       <Header />
       <main className="flex w-full flex-col items-center gap-12">
         {/* Screenshots Section */}

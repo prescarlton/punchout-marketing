@@ -12,7 +12,7 @@ export default function Changelog() {
   const visibleEntries = entries.filter((entry) => !isEntryHidden(entry.content));
 
   return (
-    <div className="flex min-h-screen flex-col items-center gap-8 bg-[#FFFCF0] px-4 py-4 font-sans dark:bg-[#100F0F] sm:justify-between sm:px-8">
+    <div className="flex min-h-screen flex-col items-center gap-8 bg-background px-4 py-4 font-sans text-foreground sm:justify-between sm:px-8">
       <Header />
       <main className="flex w-full flex-col items-center gap-12 max-w-4xl">
         <div className="flex flex-col gap-8 w-full">
