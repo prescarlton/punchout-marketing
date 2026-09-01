@@ -1,6 +1,6 @@
 # PunchOut Privacy Policy
 
-**Effective Date:** 03/03/2026
+**Effective Date:** 09/01/2026
 
 PunchOut (“the App”) respects your privacy.
 

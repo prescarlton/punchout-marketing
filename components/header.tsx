@@ -5,7 +5,7 @@ export default function Header() {
     <div className="flex gap-4 w-full items-center justify-between">
       <Link href="/">
         <h1 className="font-bold tracking-tight text-black dark:text-zinc-50 text-xl">
-          MyApp
+          PunchOut: The Punchlist App
         </h1>
       </Link>
       <Link

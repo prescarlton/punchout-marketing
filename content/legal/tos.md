@@ -1,6 +1,6 @@
 # PunchOut Terms of Service
 
-**Effective Date:** 03/03/2-26
+**Effective Date:** 09/01/2026
 
 Welcome to PunchOut (“the App”), operated by PunchOut (“we,” “us,” or “our”).
 

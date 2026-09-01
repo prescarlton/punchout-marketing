@@ -6,7 +6,7 @@ import { getLegalMarkdown } from "@/lib/legal";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
-  description: "Terms of Service for MyApp",
+  description: "Terms of Service for PunchOut",
 };
 
 export default function TermsOfServicePage() {
