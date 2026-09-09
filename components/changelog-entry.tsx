@@ -1,5 +1,3 @@
-"use client";
-
 import ReactMarkdown from "react-markdown";
 
 interface ChangelogEntryProps {
@@ -37,7 +35,7 @@ export default function ChangelogEntry({
           day: "numeric",
         });
       }
-    } catch (e) {
+    } catch {
       // Keep original format if parsing fails
     }
   }
@@ -50,70 +48,16 @@ export default function ChangelogEntry({
     .trim();
 
   return (
-    <div className="flex flex-col sm:flex-row gap-6 pb-8 border-b border-zinc-300 dark:border-zinc-700 last:border-b-0">
-      {/* Left Column: Version and Date */}
-      <div className="flex-shrink-0 sm:w-52">
-        <div className="flex flex-col gap-2">
-          <h3 className="text-xl font-bold text-black dark:text-zinc-50">
-            {formattedDate}
-          </h3>
-          <p className="text-sm text-zinc-600 dark:text-zinc-400">
-            {displayVersion}
-          </p>
-        </div>
+    <article className="grid grid-cols-1 gap-[18px] border-b border-line py-8 first:pt-0 last:border-b-0 md:grid-cols-[170px_1fr] md:gap-8">
+      <div>
+        <p className="text-sm font-semibold">{formattedDate}</p>
+        <p className="mt-2 font-mono text-xs text-accent">{displayVersion}</p>
       </div>
-
-      {/* Right Column: Release Notes */}
-      <div className="flex-1 min-w-0">
-        <div className="prose prose-zinc dark:prose-invert max-w-none">
-          <ReactMarkdown
-            components={{
-              h1: ({ children }) => (
-                <h1 className="text-2xl font-bold text-black dark:text-zinc-50 mb-2">
-                  {children}
-                </h1>
-              ),
-              h2: ({ children }) => (
-                <h2 className="text-xl font-semibold text-black dark:text-zinc-50 mt-4 mb-2">
-                  {children}
-                </h2>
-              ),
-              h3: ({ children }) => (
-                <h3 className="text-lg font-semibold text-black dark:text-zinc-50 mt-3 mb-2">
-                  {children}
-                </h3>
-              ),
-              p: ({ children }) => (
-                <p className="text-base text-zinc-600 dark:text-zinc-400 mb-2">
-                  {children}
-                </p>
-              ),
-              ul: ({ children }) => (
-                <ul className="list-disc list-inside text-base text-zinc-600 dark:text-zinc-400 mb-2 space-y-1">
-                  {children}
-                </ul>
-              ),
-              ol: ({ children }) => (
-                <ol className="list-decimal list-inside text-base text-zinc-600 dark:text-zinc-400 mb-2 space-y-1">
-                  {children}
-                </ol>
-              ),
-              li: ({ children }) => (
-                <li className="text-base text-zinc-600 dark:text-zinc-400">
-                  {children}
-                </li>
-              ),
-              strong: ({ children }) => (
-                <strong className="font-semibold text-black dark:text-zinc-50">
-                  {children}
-                </strong>
-              ),
-            }}
-          >
-            {releaseNotes}
-          </ReactMarkdown>
-        </div>
+      <div className="document-copy">
+        <ReactMarkdown components={{ h1: ({ children }) => <h2>{children}</h2> }}>
+          {releaseNotes}
+        </ReactMarkdown>
       </div>
-    </div>
+    </article>
   );
 }

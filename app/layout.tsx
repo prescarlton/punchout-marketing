@@ -13,8 +13,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MyApp",
-  description: "Marketing Site for MyApp",
+  title: {
+    default: "PunchOut — Small fixes. Job done.",
+    template: "%s | PunchOut",
+  },
+  description: "Keep construction punch lists organized, attach photos, and generate PDF reports. All on your device. Meet PunchOut, the punch list app.",
 };
 
 export default function RootLayout({

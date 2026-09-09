@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import Header from "@/components/header";
+import Footer from "@/components/footer";
 import ChangelogEntry from "@/components/changelog-entry";
 import { getAllChangelogEntries } from "@/lib/changelog";
+
+export const metadata: Metadata = {
+  title: "Changelog",
+  description: "The latest updates and improvements to PunchOut.",
+};
 
 function isEntryHidden(content: string): boolean {
   const hiddenMatch = content.match(/^Hidden:\s*([^\n]+)/im);
@@ -12,48 +19,27 @@ export default function Changelog() {
   const visibleEntries = entries.filter((entry) => !isEntryHidden(entry.content));
 
   return (
-    <div className="flex min-h-screen flex-col items-center gap-8 bg-background px-4 py-4 font-sans text-foreground sm:justify-between sm:px-8">
+    <div className="mx-auto flex min-h-svh w-[calc(100%-40px)] flex-col max-[359px]:w-[calc(100%-32px)] md:w-[calc(100%-64px)] lg:w-[min(100%-96px,1160px)]">
       <Header />
-      <main className="flex w-full flex-col items-center gap-12 max-w-4xl">
-        <div className="flex flex-col gap-8 w-full">
-          <h2 className="text-3xl font-bold text-black dark:text-zinc-50">
-            Changelog
-          </h2>
-          <div className="flex flex-col gap-6">
-            {visibleEntries.length > 0 ? (
-              visibleEntries.map((entry) => (
-                <ChangelogEntry
-                  key={entry.version}
-                  version={entry.version}
-                  content={entry.content}
-                />
-              ))
-            ) : (
-              <div className="flex flex-col items-center gap-4 py-12 text-center">
-                <div className="flex flex-col gap-2">
-                  <h3 className="text-2xl font-bold text-black dark:text-zinc-50">
-                    No updates yet
-                  </h3>
-                  <p className="text-base text-zinc-600 dark:text-zinc-400 max-w-md">
-                    We're working on exciting new features and improvements. Check back soon for updates!
-                  </p>
-                </div>
-              </div>
-            )}
+      <main
+        id="main-content"
+        className="mx-auto w-full max-w-[820px] flex-1 pt-11 pb-16 md:pt-16 md:pb-24"
+      >
+        <h1 className="mb-8 text-[clamp(36px,6vw,56px)] font-[650] leading-[1.1] tracking-[-0.05em] md:mb-10">Changelog</h1>
+        {visibleEntries.length > 0 ? (
+          <div>
+            {visibleEntries.map((entry) => (
+              <ChangelogEntry key={entry.version} version={entry.version} content={entry.content} />
+            ))}
           </div>
-        </div>
+        ) : (
+          <div className="document-copy">
+            <h2>No updates yet</h2>
+            <p>We&apos;re working on exciting new features and improvements. Check back soon for updates!</p>
+          </div>
+        )}
       </main>
-      {/* Footer Links */}
-      <div className="flex flex-col items-center gap-4 text-center">
-        <a
-          href="https://preston.codes"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-base text-zinc-600 underline transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
-        >
-          preston.codes
-        </a>
-      </div>
+      <Footer />
     </div>
   );
 }

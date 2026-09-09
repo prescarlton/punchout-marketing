@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import ReactMarkdown from "react-markdown";
-
 import Header from "@/components/header";
+import Footer from "@/components/footer";
 import { getLegalMarkdown } from "@/lib/legal";
 
 export const metadata: Metadata = {
@@ -9,36 +9,28 @@ export const metadata: Metadata = {
   description: "Terms of Service for PunchOut",
 };
 
-export default function TermsOfServicePage() {
+export default function LegalPage() {
   const markdown = getLegalMarkdown("tos.md").trim();
 
   return (
-    <div className="flex min-h-screen flex-col items-center gap-8 bg-background px-4 py-4 font-sans text-foreground sm:justify-between sm:px-8">
+    <div className="mx-auto flex min-h-svh w-[calc(100%-40px)] flex-col max-[359px]:w-[calc(100%-32px)] md:w-[calc(100%-64px)] lg:w-[min(100%-96px,1160px)]">
       <Header />
-      <main className="flex w-full max-w-4xl flex-col gap-8">
-        <h1 className="text-3xl font-bold text-black dark:text-zinc-50">
-          Terms of Service
-        </h1>
-        {markdown ? (
-          <div className="prose prose-zinc max-w-none dark:prose-invert">
-            <ReactMarkdown>{markdown}</ReactMarkdown>
-          </div>
-        ) : (
-          <p className="text-base text-zinc-600 dark:text-zinc-400">
-            Terms of Service content coming soon.
-          </p>
-        )}
+      <main
+        id="main-content"
+        className="mx-auto w-full max-w-[820px] flex-1 pt-11 pb-16 md:pt-16 md:pb-24"
+      >
+        <h1 className="mb-8 text-[clamp(36px,6vw,56px)] font-[650] leading-[1.1] tracking-[-0.05em] md:mb-10">Terms of Service</h1>
+        <div className="document-copy">
+          {markdown ? (
+            <ReactMarkdown components={{ h1: ({ children }) => <h2>{children}</h2> }}>
+              {markdown}
+            </ReactMarkdown>
+          ) : (
+            <p>Terms of Service content coming soon.</p>
+          )}
+        </div>
       </main>
-      <div className="flex flex-col items-center gap-4 text-center">
-        <a
-          href="https://preston.codes"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-base text-zinc-600 underline transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
-        >
-          preston.codes
-        </a>
-      </div>
+      <Footer />
     </div>
   );
 }
